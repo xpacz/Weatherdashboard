@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <div class="card card-body">
+      <h1>Weather dashboard</h1>
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+            <canvas id="chart">{{chart}}</canvas>
+        </div>
+        <div class="col-sm-6">
+          <label for="ciudades">City</label>
+          <select [(ngModel)]="parametros.ciudad" (change)="getCity()" class="form-control" name="ciudades">
+            <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad.id">
+              {{ciudad.nombre}}
+            </option>
+          </select>
+          <br>
+          <label for="unidades">Scale</label>
+          <select [(ngModel)]="parametros.unidad" (change)="getWeather()" class="form-control" name="unidades">
+            <option *ngFor="let unidad of unidades" [ngValue]="unidad.id">{{unidad.nombre}}</option>
+          </select>
+          <br>
+          <label for="f1">Start date</label>
+          <input [(ngModel)]="parametros.f1" (change)="getWeather()" type="date" class="form-control">
+          <br>
+          <label for="f2">End date</label>
+          <input [(ngModel)]="parametros.f2" (change)="getWeather()" type="date" class="form-control">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <div class="table-responsive">
+            <table class="table table-condensed table-hover table-striped table-sm">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Date</th>
+                  <th>Temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let datos of datosclima">
+                  <td>{{datos.date | date: 'dd/MM/yyyy'}}{{datos.datetime | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{datos.temp}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div> 
+      </div>
+    </div>
+</div>
